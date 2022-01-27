@@ -7,7 +7,7 @@ interface Props {
     marketCoin: MarketCoinInfo;
 }
 
-interface MarketCoinInfo {
+export interface MarketCoinInfo {
     id: number;
     name: string;
     current_price: string;

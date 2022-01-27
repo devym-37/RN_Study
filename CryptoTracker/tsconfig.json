@@ -4,7 +4,8 @@
         "strict": true,
         "baseUrl": "./src",
         "paths": {
-            "@components/*": ["compoents/*"]
+            "@components/*": ["compoents/*"],
+            "@screens/*": ["screens/*"]
         }
     }
 }
