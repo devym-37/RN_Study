@@ -13,6 +13,7 @@ module.exports = function (api) {
                         "@screens": "./src/screens",
                     },
                 },
+                "react-native-reanimated/plugin",
             ],
         ],
     };
