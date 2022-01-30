@@ -4,12 +4,11 @@ import { Ionicons, EvilIcons } from "@expo/vector-icons";
 
 interface Props {
     imageUri: string;
-    name: string;
     symbol: string;
     marketRank: number;
 }
 
-const CoinDetailHeader = ({ imageUri, name, symbol, marketRank }: Props) => {
+const CoinDetailHeader = ({ imageUri, symbol, marketRank }: Props) => {
     return (
         <View style={styles.container}>
             <Ionicons name='chevron-back-sharp' size={30} color='white' />
@@ -29,7 +28,6 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         alignItems: "center",
-        paddingHorizontal: 10,
         justifyContent: "space-between",
     },
     subContainer: {
