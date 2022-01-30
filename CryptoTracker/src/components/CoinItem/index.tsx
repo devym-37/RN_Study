@@ -40,7 +40,7 @@ const CoinItem = ({ marketCoin }: Props) => {
     };
 
     return (
-        <>
+        <View style={styles.coinContainer}>
             <Image source={{ uri: image }} style={styles.image} />
             <View>
                 <Text style={styles.title}>{name}</Text>
@@ -57,7 +57,7 @@ const CoinItem = ({ marketCoin }: Props) => {
                 <Text style={styles.title}>{current_price}</Text>
                 <Text style={styles.marketText}>MCap {normalizeMarketCap(market_cap)}</Text>
             </View>
-        </>
+        </View>
     );
 };
 
