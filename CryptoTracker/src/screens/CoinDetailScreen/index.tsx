@@ -17,8 +17,8 @@ const CoinDetailScreen = () => {
         market_data: { market_cap_rank, current_price, price_change_percentage_24h },
     } = Coin;
 
-    const [coinValue, setCoinValue] = useState(DEFAULT_COIN_VALUE);
-    const [usdValue, setUsdValue] = useState(current_price.usd);
+    const [coinValue, setCoinValue] = useState<string | number>(DEFAULT_COIN_VALUE);
+    const [usdValue, setUsdValue] = useState<string | number>(current_price.usd);
 
     const percentageColor = price_change_percentage_24h < 0 ? "#ea3943" : "#16c784" || "white";
 
