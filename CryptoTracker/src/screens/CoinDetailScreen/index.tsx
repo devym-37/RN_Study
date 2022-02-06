@@ -1,31 +1,57 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, Dimensions, TextInput } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, Dimensions, TextInput, ActivityIndicator } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { ChartPathProvider, ChartPath, ChartDot, ChartYLabel } from "@rainbow-me/animated-charts";
 import { useRoute } from "@react-navigation/native";
 import Coin from "../../../assets/data/crypto.json";
 import CoinDetailHeader from "./components/CoinDetailHeader";
+import { getDetailCoinData, getCoinMarketChart } from "../../services/requests";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const DEFAULT_COIN_VALUE = "1";
 
 const CoinDetailScreen = () => {
-    const {
-        image: { small },
-        name,
-        symbol,
-        prices,
-        market_data: { market_cap_rank, current_price, price_change_percentage_24h },
-    } = Coin;
-
     const [coinValue, setCoinValue] = useState<string>(DEFAULT_COIN_VALUE);
-    const [usdValue, setUsdValue] = useState<string>(current_price.usd.toString());
+    const [usdValue, setUsdValue] = useState<string>("");
+    const [coin, setCoin] = useState(null);
+    const [coinMarketChart, setCoinMarketChart] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const route = useRoute();
 
     const {
         params: { coinId },
     } = route;
+
+    const fetchCoinData = async () => {
+        const fetchedCoinData = await getDetailCoinData(coinId);
+        const fetchedCoinMarketChart = await getCoinMarketChart(coinId);
+        setCoinMarketChart(fetchedCoinMarketChart);
+        setCoin(fetchedCoinData);
+        setUsdValue(fetchedCoinData.market_data.current_price.usd.toString());
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        fetchCoinData();
+    }, []);
+
+    if (loading || !coin || !coinMarketChart) {
+        return (
+            <View style={styles.loadingView}>
+                <ActivityIndicator size='large' />
+            </View>
+        );
+    }
+
+    const {
+        image: { small },
+        name,
+        symbol,
+        market_data: { market_cap_rank, current_price, price_change_percentage_24h },
+    } = coin;
+
+    const { prices } = coinMarketChart;
 
     const percentageColor = price_change_percentage_24h < 0 ? "#ea3943" : "#16c784" || "white";
 
@@ -130,6 +156,11 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 16,
         color: "white",
+    },
+    loadingView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
     },
 });
 
