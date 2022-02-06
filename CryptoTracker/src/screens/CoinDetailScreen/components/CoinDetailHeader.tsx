@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { Ionicons, EvilIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 interface Props {
     imageUri: string;
@@ -9,9 +10,11 @@ interface Props {
 }
 
 const CoinDetailHeader = ({ imageUri, symbol, marketRank }: Props) => {
+    const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
-            <Ionicons name='chevron-back-sharp' size={30} color='white' />
+            <Ionicons name='chevron-back-sharp' size={30} color='white' onPress={() => navigation.goBack()} />
             <View style={styles.subContainer}>
                 <Image source={{ uri: imageUri }} style={styles.image} />
                 <Text style={styles.name}>{symbol.toUpperCase()}</Text>

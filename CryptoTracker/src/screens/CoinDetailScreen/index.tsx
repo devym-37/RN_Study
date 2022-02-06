@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Dimensions, TextInput } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { ChartPathProvider, ChartPath, ChartDot, ChartYLabel } from "@rainbow-me/animated-charts";
+import { useRoute } from "@react-navigation/native";
 import Coin from "../../../assets/data/crypto.json";
 import CoinDetailHeader from "./components/CoinDetailHeader";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
-const DEFAULT_COIN_VALUE = 1;
+const DEFAULT_COIN_VALUE = "1";
 
 const CoinDetailScreen = () => {
     const {
@@ -17,8 +18,14 @@ const CoinDetailScreen = () => {
         market_data: { market_cap_rank, current_price, price_change_percentage_24h },
     } = Coin;
 
-    const [coinValue, setCoinValue] = useState<string | number>(DEFAULT_COIN_VALUE);
-    const [usdValue, setUsdValue] = useState<string | number>(current_price.usd);
+    const [coinValue, setCoinValue] = useState<string>(DEFAULT_COIN_VALUE);
+    const [usdValue, setUsdValue] = useState<string>(current_price.usd.toString());
+
+    const route = useRoute();
+
+    const {
+        params: { coinId },
+    } = route;
 
     const percentageColor = price_change_percentage_24h < 0 ? "#ea3943" : "#16c784" || "white";
 

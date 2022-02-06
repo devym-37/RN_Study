@@ -1,6 +1,7 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 
 interface Props {
@@ -21,6 +22,8 @@ export interface MarketCoinInfo {
 const CoinItem = ({ marketCoin }: Props) => {
     const { id, name, current_price, market_cap_rank, price_change_percentage_24h, symbol, market_cap, image } = marketCoin;
 
+    const navigation = useNavigation();
+
     const percentageColor = price_change_percentage_24h < 0 ? "#ea3943" : "#16c784" || "white";
 
     const normalizeMarketCap = (marketCap: number) => {
@@ -40,7 +43,7 @@ const CoinItem = ({ marketCoin }: Props) => {
     };
 
     return (
-        <View style={styles.coinContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate("CoinDetail", { coinId: id })} style={styles.coinContainer}>
             <Image source={{ uri: image }} style={styles.image} />
             <View>
                 <Text style={styles.title}>{name}</Text>
@@ -57,7 +60,7 @@ const CoinItem = ({ marketCoin }: Props) => {
                 <Text style={styles.title}>{current_price}</Text>
                 <Text style={styles.marketText}>MCap {normalizeMarketCap(market_cap)}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     );
 };
 
