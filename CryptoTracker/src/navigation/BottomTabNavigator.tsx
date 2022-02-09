@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Entypo, FontAwesome } from "@expo/vector-icons";
 import HomeScreen from "../screens/HomeScreen";
-import WatchlistScreen from "../screens/WatchlistScreen";
+import WatchListScreen from "../screens/WatchListScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,8 +27,8 @@ const BottomTabNavigator = () => {
                 }}
             />
             <Tab.Screen
-                name='Watchlist'
-                component={WatchlistScreen}
+                name='WatchList'
+                component={WatchListScreen}
                 options={{
                     tabBarIcon: ({ focused, color }) => <FontAwesome name='star' size={focused ? 30 : 25} color={color} />,
                 }}

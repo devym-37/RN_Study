@@ -4,14 +4,17 @@ import HomeScreen from "./src/screens/HomeScreen";
 import CoinDetailScreen from "./src/screens/CoinDetailScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import Navigation from "./src/navigation";
+import WatchListProvider from "./src/Contexts/WatchListContext";
 
 export default function App() {
     return (
         <NavigationContainer theme={{ colors: { background: "#121212" } }}>
-            <View style={styles.container}>
-                <StatusBar style='light' />
-                <Navigation />
-            </View>
+            <WatchListProvider>
+                <View style={styles.container}>
+                    <StatusBar style='light' />
+                    <Navigation />
+                </View>
+            </WatchListProvider>
         </NavigationContainer>
     );
 }
