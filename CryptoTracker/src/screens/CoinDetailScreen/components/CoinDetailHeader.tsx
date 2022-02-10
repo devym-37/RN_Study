@@ -1,16 +1,30 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import { Ionicons, EvilIcons } from "@expo/vector-icons";
+import { Ionicons, EvilIcons, FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useWatchList } from "../../../Contexts/WatchListContext";
 
 interface Props {
+    coinId: number;
     imageUri: string;
     symbol: string;
     marketRank: number;
 }
 
-const CoinDetailHeader = ({ imageUri, symbol, marketRank }: Props) => {
+const CoinDetailHeader = ({ coinId, imageUri, symbol, marketRank }: Props) => {
     const navigation = useNavigation();
+    const { watchListCoinIds, saveWatchListCoinId, removeWatchListCoinId } = useWatchList();
+
+    console.log("coinId", coinId);
+    const checkIfCoinWatchListed = () => watchListCoinIds.some((watchedCoinId: string) => watchedCoinId === coinId);
+
+    const handleClickWatchedCoin = () => {
+        if (checkIfCoinWatchListed()) {
+            removeWatchListCoinId(coinId);
+        } else {
+            saveWatchListCoinId(coinId);
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -22,7 +36,12 @@ const CoinDetailHeader = ({ imageUri, symbol, marketRank }: Props) => {
                     <Text style={styles.marketRank}>#{marketRank}</Text>
                 </View>
             </View>
-            <EvilIcons name='user' size={30} color='white' />
+            <FontAwesome
+                name={checkIfCoinWatchListed() ? "star" : "star-o"}
+                size={25}
+                color={checkIfCoinWatchListed() ? "#FFBF00" : "white"}
+                onPress={handleClickWatchedCoin}
+            />
         </View>
     );
 };
