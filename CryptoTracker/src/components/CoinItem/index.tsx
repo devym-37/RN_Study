@@ -51,7 +51,7 @@ const CoinItem = ({ marketCoin }: Props) => {
         }
         return marketCap;
     };
-    console.log("symbol", symbol);
+
     return (
         <TouchableOpacity
             onPress={() => navigation.navigate("CoinDetail", { coinId: id })}
