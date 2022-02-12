@@ -29,8 +29,8 @@ const WatchListProvider = ({ children }: Props) => {
     const saveWatchListCoinId = async (coinId: string) => {
         try {
             const newWatchList = [...watchListCoinIds, coinId];
-            const saveCoins = JSON.stringify("@watchList_coins", newWatchList);
-            await AsyncStorage.setItem("@storage_Key", saveCoins);
+            const saveCoins = JSON.stringify(newWatchList);
+            await AsyncStorage.setItem("@watchList_coins", saveCoins);
             setWatchListCoinIds(newWatchList);
         } catch (e) {
             console.log("storeWatchListDate", e);
@@ -39,12 +39,22 @@ const WatchListProvider = ({ children }: Props) => {
 
     const removeWatchListCoinId = async (coinId: string) => {
         const watchList = watchListCoinIds.filter((coin) => coin !== coinId);
-        const saveCoins = JSON.stringify("@watchList_coins", watchList);
-        await AsyncStorage.setItem("@storage_Key", saveCoins);
+        const saveCoins = JSON.stringify(watchList);
+        await AsyncStorage.setItem("@watchList_coins", saveCoins);
         setWatchListCoinIds(watchList);
     };
 
-    return <WatchListContext.Provider value={{ watchListCoinIds, saveWatchListCoinId, removeWatchListCoinId }}>{children}</WatchListContext.Provider>;
+    return (
+        <WatchListContext.Provider
+            value={{
+                watchListCoinIds,
+                saveWatchListCoinId,
+                removeWatchListCoinId,
+            }}
+        >
+            {children}
+        </WatchListContext.Provider>
+    );
 };
 
 export default WatchListProvider;

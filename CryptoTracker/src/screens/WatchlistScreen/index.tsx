@@ -1,15 +1,51 @@
-import React, { FC } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { FC, useState, useEffect } from "react";
+import { StyleSheet, FlatList, RefreshControl } from "react-native";
 import { useWatchList } from "../../Contexts/WatchListContext";
+import CoinItem, { MarketCoinInfo } from "../../components/CoinItem";
+import { getWatchListedCoins } from "../../services/requests";
 
 interface Props {}
 
 const WatchListScreen: FC<Props> = () => {
-    const wishList = useWatchList();
+    const { watchListCoinIds } = useWatchList();
+
+    const [likeCoins, setLikeCoins] = useState<any[]>([]);
+    const [loading, setLoading] = useState(false);
+
+    const transformCoinIds = () => watchListCoinIds.join("%2C");
+
+    useEffect(() => {
+        fetchWatchListedCoins();
+    }, [watchListCoinIds]);
+
+    const fetchWatchListedCoins = async () => {
+        if (loading) {
+            return;
+        }
+        setLoading(true);
+        const coinsData = await getWatchListedCoins(1, transformCoinIds());
+
+        setLikeCoins(coinsData);
+        setLoading(false);
+    };
+
+    const renderItem = ({ item }: MarketCoinInfo) => (
+        <CoinItem marketCoin={item} />
+    );
+
     return (
-        <View>
-            <Text>WatchListScreen</Text>
-        </View>
+        <FlatList
+            data={likeCoins}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => index.toString()}
+            refreshControl={
+                <RefreshControl
+                    refreshing={loading}
+                    tintColor='white'
+                    onRefresh={fetchWatchListedCoins}
+                />
+            }
+        />
     );
 };
 

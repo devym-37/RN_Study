@@ -20,11 +20,21 @@ export interface MarketCoinInfo {
 }
 
 const CoinItem = ({ marketCoin }: Props) => {
-    const { id, name, current_price, market_cap_rank, price_change_percentage_24h, symbol, market_cap, image } = marketCoin;
+    const {
+        id,
+        name,
+        current_price,
+        market_cap_rank,
+        price_change_percentage_24h,
+        symbol,
+        market_cap,
+        image,
+    } = marketCoin;
 
     const navigation = useNavigation();
 
-    const percentageColor = price_change_percentage_24h < 0 ? "#ea3943" : "#16c784" || "white";
+    const percentageColor =
+        price_change_percentage_24h < 0 ? "#ea3943" : "#16c784" || "white";
 
     const normalizeMarketCap = (marketCap: number) => {
         if (marketCap > 1e12) {
@@ -41,9 +51,12 @@ const CoinItem = ({ marketCoin }: Props) => {
         }
         return marketCap;
     };
-
+    console.log("symbol", symbol);
     return (
-        <TouchableOpacity onPress={() => navigation.navigate("CoinDetail", { coinId: id })} style={styles.coinContainer}>
+        <TouchableOpacity
+            onPress={() => navigation.navigate("CoinDetail", { coinId: id })}
+            style={styles.coinContainer}
+        >
             <Image source={{ uri: image }} style={styles.image} />
             <View>
                 <Text style={styles.title}>{name}</Text>
@@ -52,13 +65,26 @@ const CoinItem = ({ marketCoin }: Props) => {
                         <Text style={styles.rank}>{market_cap_rank}</Text>
                     </View>
                     <Text style={styles.text}>{symbol.toUpperCase()}</Text>
-                    <AntDesign name={price_change_percentage_24h < 0 ? "caretdown" : "caretup"} size={12} color={percentageColor} style={styles.icon} />
-                    <Text style={{ color: percentageColor }}>{price_change_percentage_24h?.toFixed(2)}%</Text>
+                    <AntDesign
+                        name={
+                            price_change_percentage_24h < 0
+                                ? "caretdown"
+                                : "caretup"
+                        }
+                        size={12}
+                        color={percentageColor}
+                        style={styles.icon}
+                    />
+                    <Text style={{ color: percentageColor }}>
+                        {price_change_percentage_24h?.toFixed(2)}%
+                    </Text>
                 </View>
             </View>
             <View style={styles.priceContainer}>
                 <Text style={styles.title}>{current_price}</Text>
-                <Text style={styles.marketText}>MCap {normalizeMarketCap(market_cap)}</Text>
+                <Text style={styles.marketText}>
+                    MCap {normalizeMarketCap(market_cap)}
+                </Text>
             </View>
         </TouchableOpacity>
     );

@@ -13,22 +13,32 @@ interface Props {
 
 const CoinDetailHeader = ({ coinId, imageUri, symbol, marketRank }: Props) => {
     const navigation = useNavigation();
-    const { watchListCoinIds, saveWatchListCoinId, removeWatchListCoinId } = useWatchList();
-
+    const { watchListCoinIds, saveWatchListCoinId, removeWatchListCoinId } =
+        useWatchList();
+    console.log("watchListCoinIds", watchListCoinIds);
     console.log("coinId", coinId);
-    const checkIfCoinWatchListed = () => watchListCoinIds.some((watchedCoinId: string) => watchedCoinId === coinId);
+    const checkIfCoinWatchListed = () =>
+        watchListCoinIds.some(
+            (watchedCoinId: string) => watchedCoinId === coinId
+        );
 
     const handleClickWatchedCoin = () => {
         if (checkIfCoinWatchListed()) {
             removeWatchListCoinId(coinId);
         } else {
+            console.log("saveWatchListCoinId");
             saveWatchListCoinId(coinId);
         }
     };
 
     return (
         <View style={styles.container}>
-            <Ionicons name='chevron-back-sharp' size={30} color='white' onPress={() => navigation.goBack()} />
+            <Ionicons
+                name='chevron-back-sharp'
+                size={30}
+                color='white'
+                onPress={() => navigation.goBack()}
+            />
             <View style={styles.subContainer}>
                 <Image source={{ uri: imageUri }} style={styles.image} />
                 <Text style={styles.name}>{symbol.toUpperCase()}</Text>
