@@ -135,7 +135,7 @@ const CoinDetailScreen = () => {
                         />
 
                         <Text style={styles.pricePercent}>
-                            {price_change_percentage_24h.toFixed(2)}%
+                            {price_change_percentage_24h?.toFixed(2)}%
                         </Text>
                     </View>
                 </View>
