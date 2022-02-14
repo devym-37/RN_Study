@@ -1,5 +1,6 @@
 import { atom, selector } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getWatchListedCoins } from "../services/requests";
 
 export const allPortfolioBoughtAssets = selector({
     key: "allPortfolioBoughtAssets",
@@ -9,7 +10,36 @@ export const allPortfolioBoughtAssets = selector({
     },
 });
 
+export const allPortfolioBoughtAssetsFromAPI = selector({
+    key: "allPortfolioBoughtAssetsFromAPI",
+    get: async ({ get }) => {
+        const boughtPortfolioAssets = get(allPortfolioBoughtAssetsInStorage);
+        const portfolioAssetsMarketData = await getWatchListedCoins(
+            1,
+            boughtPortfolioAssets.map((portfolioAsset: any) => portfolioAsset.id).join(",")
+        );
+
+        const boughtAssets = boughtPortfolioAssets.map((boughtAsset) => {
+            const portfolioAsset = portfolioAssetsMarketData.filter((item) => boughtAsset.id === item.id)[0];
+            return {
+                ...boughtAsset,
+                currentPrice: portfolioAsset.currentPrice,
+                priceChangePercentage: portfolioAsset.price_change_percentage_24,
+            };
+        });
+
+        return boughtAssets.sort(
+            (item1, item2) => item1.quantityBought * item1.currentPrice < item2.quantityBought * item2.currentPrice
+        );
+    },
+});
+
 export const allPortfolioAssets = atom({
     key: "allPortfolioAssets",
+    default: allPortfolioBoughtAssetsFromAPI,
+});
+
+export const allPortfolioBoughtAssetsInStorage = atom({
+    key: "allPortfolioBoughtAssetsInStorage",
     default: allPortfolioBoughtAssets,
 });
