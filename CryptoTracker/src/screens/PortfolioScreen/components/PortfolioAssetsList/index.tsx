@@ -3,11 +3,14 @@ import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import PortfolioAssetItem from "../PortfolioAssetItem";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { allPortfolioAssets } from "../../../../atoms/PortfolioAssets";
 
 interface Props {}
 
 const PortfolioAssetsList: FC<Props> = () => {
     const navigation = useNavigation();
+    const assets = useRecoilValue(allPortfolioAssets);
 
     const renderItem = ({ item }) => {
         return <PortfolioAssetItem assetItem={item} />;
@@ -66,7 +69,7 @@ const PortfolioAssetsList: FC<Props> = () => {
         <View>
             <Text>PortfolioAssetsList</Text>
             <FlatList
-                data={[]}
+                data={assets}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={renderItem}
                 ListHeaderComponent={renderListHeader()}

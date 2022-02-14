@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, Suspense } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import PortfolioAssetsList from "./components/PortfolioAssetsList";
 
@@ -8,7 +8,13 @@ const PortfolioScreen: FC<Props> = () => {
     return (
         <View>
             <Text>PortfolioScreen</Text>
-            <PortfolioAssetsList />
+            <Suspense
+                fallback={
+                    <Text style={{ color: "white" }}>Loading Please Wait</Text>
+                }
+            >
+                <PortfolioAssetsList />
+            </Suspense>
         </View>
     );
 };
