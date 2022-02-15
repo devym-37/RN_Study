@@ -21,9 +21,7 @@ const PortfolioAssetsList: FC<Props> = () => {
             <>
                 <View style={styles.balanceContainer}>
                     <View>
-                        <Text style={styles.currentBalance}>
-                            Current Balance
-                        </Text>
+                        <Text style={styles.currentBalance}>Current Balance</Text>
                         <Text style={styles.currentBalanceValue}>${1111}</Text>
                         <Text
                             style={{
@@ -56,10 +54,7 @@ const PortfolioAssetsList: FC<Props> = () => {
 
     const renderFooter = () => {
         return (
-            <Pressable
-                style={styles.buttonContainer}
-                onPress={() => navigation.navigate("AddNewAssetScreen")}
-            >
+            <Pressable style={styles.buttonContainer} onPress={() => navigation.navigate("AddNewAssetScreen")}>
                 <Text style={styles.buttonText}>Add New Asset</Text>
             </Pressable>
         );

@@ -19,8 +19,8 @@ export const allPortfolioBoughtAssetsFromAPI = selector({
             boughtPortfolioAssets.map((portfolioAsset: any) => portfolioAsset.id).join(",")
         );
 
-        const boughtAssets = boughtPortfolioAssets.map((boughtAsset) => {
-            const portfolioAsset = portfolioAssetsMarketData.filter((item) => boughtAsset.id === item.id)[0];
+        const boughtAssets = boughtPortfolioAssets.map((boughtAsset: any) => {
+            const portfolioAsset = portfolioAssetsMarketData.filter((item: any) => boughtAsset.id === item.id)[0];
             return {
                 ...boughtAsset,
                 currentPrice: portfolioAsset.currentPrice,
@@ -29,7 +29,8 @@ export const allPortfolioBoughtAssetsFromAPI = selector({
         });
 
         return boughtAssets.sort(
-            (item1, item2) => item1.quantityBought * item1.currentPrice < item2.quantityBought * item2.currentPrice
+            (item1: any, item2: any) =>
+                item1.quantityBought * item1.currentPrice < item2.quantityBought * item2.currentPrice
         );
     },
 });
