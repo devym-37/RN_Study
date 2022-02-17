@@ -11,6 +11,33 @@ interface Props {}
 const PortfolioAssetsList: FC<Props> = () => {
     const navigation = useNavigation();
     const assets = useRecoilValue(allPortfolioAssets);
+    console.log("assets", assets);
+    const getCurrentBalance = () =>
+        assets.reduce((total, currentAsset) => total + currentAsset.currentPrice * currentAsset.quantityBought, 0);
+
+    const getCurrentValueChange = () => {
+        const currentBalance = getCurrentBalance();
+        const boughtBalance = assets.reduce(
+            (total, currentAsset) => total + currentAsset.priceBought * currentAsset.quantityBought,
+            0
+        );
+
+        return currentBalance - boughtBalance;
+    };
+
+    const getCurrentPercentageChange = () => {
+        const currentBalance = getCurrentBalance();
+        const boughtBalance = assets.reduce(
+            (total, currentAsset) => total + currentAsset.priceBought * currentAsset.quantityBought,
+            0
+        );
+
+        if (boughtBalance === 0) return 0;
+
+        return (((currentBalance - boughtBalance) / boughtBalance) * 100).toFixed(2) || 0;
+    };
+
+    const isChangePositive = () => getCurrentValueChange() >= 0;
 
     const renderItem = ({ item }) => {
         return <PortfolioAssetItem assetItem={item} />;
@@ -22,30 +49,32 @@ const PortfolioAssetsList: FC<Props> = () => {
                 <View style={styles.balanceContainer}>
                     <View>
                         <Text style={styles.currentBalance}>Current Balance</Text>
-                        <Text style={styles.currentBalanceValue}>${1111}</Text>
+                        <Text style={styles.currentBalanceValue}>${getCurrentBalance().toFixed(2)}</Text>
                         <Text
                             style={{
                                 ...styles.valueChange,
-                                color: true ? "green" : "red",
+                                color: isChangePositive() ? "green" : "red",
                             }}
                         >
-                            ${1111} (All Time)
+                            ${getCurrentValueChange().toFixed(2)} (All Time)
                         </Text>
                     </View>
-                    <View
-                        style={{
-                            ...styles.priceChangePercentageContainer,
-                            backgroundColor: true ? "green" : "red",
-                        }}
-                    >
-                        <AntDesign
-                            name={true ? "caretup" : "caretdown"}
-                            size={12}
-                            color={"white"}
-                            style={{ alignSelf: "center", marginRight: 5 }}
-                        />
-                        <Text style={styles.percentageChange}>{1.2}%</Text>
-                    </View>
+                    {getCurrentPercentageChange() !== 0 && (
+                        <View
+                            style={{
+                                ...styles.priceChangePercentageContainer,
+                                backgroundColor: isChangePositive() ? "green" : "red",
+                            }}
+                        >
+                            <AntDesign
+                                name={isChangePositive() ? "caretup" : "caretdown"}
+                                size={12}
+                                color={"white"}
+                                style={{ alignSelf: "center", marginRight: 5 }}
+                            />
+                            <Text style={styles.percentageChange}>{getCurrentPercentageChange()}%</Text>
+                        </View>
+                    )}
                 </View>
                 <Text style={styles.assetsLabel}>Your Assets</Text>
             </>
@@ -61,16 +90,13 @@ const PortfolioAssetsList: FC<Props> = () => {
     };
 
     return (
-        <View>
-            <Text>PortfolioAssetsList</Text>
-            <FlatList
-                data={assets}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={renderItem}
-                ListHeaderComponent={renderListHeader()}
-                ListFooterComponent={renderFooter()}
-            />
-        </View>
+        <FlatList
+            data={assets}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={renderItem}
+            ListHeaderComponent={renderListHeader()}
+            ListFooterComponent={renderFooter()}
+        />
     );
 };
 
@@ -82,7 +108,7 @@ const styles = StyleSheet.create({
     },
     currentBalanceValue: {
         color: "white",
-        fontSize: 15,
+        fontSize: 40,
         fontWeight: "700",
         letterSpacing: 1,
     },
@@ -93,7 +119,7 @@ const styles = StyleSheet.create({
     },
     percentageChange: {
         color: "white",
-        fontWeight: "500",
+        fontWeight: "600",
         fontSize: 17,
     },
     balanceContainer: {

@@ -59,7 +59,7 @@ const AddNewAssetScreen: FC<Props> = () => {
             image: selectedCoin.image.small,
             ticker: selectedCoin.symbol.toUpperCase(),
             quantityBought: parseFloat(boughtAssetQuantity),
-            priceBought: current_price.usd,
+            priceBought: selectedCoin.market_data.current_price.usd,
         };
         const newAssets = [...assetsInStorage, newAsset];
         const jsonValue = JSON.stringify(newAssets);
@@ -86,10 +86,12 @@ const AddNewAssetScreen: FC<Props> = () => {
                         borderWidth: 1.5,
                         borderColor: "#444444",
                         borderRadius: 5,
+                        backgroundColor: "#1e1e1e",
+                        color: "white",
                     },
                 }}
             />
-            {selectedCoinId && selectedCoin && (
+            {selectedCoin && (
                 <>
                     <View style={styles.boughtQuantityContainer}>
                         <View style={styles.textInputContainer}>
@@ -111,7 +113,8 @@ const AddNewAssetScreen: FC<Props> = () => {
                             styles.buttonContainer,
                             { backgroundColor: emptyAssetQuantity() ? "#303030" : "#4169E1" },
                         ]}
-                        onPress={() => navigation.navigate("AddNewAssetScreen")}
+                        onPress={onAddNewAsset}
+                        // onPress={() => AsyncStorage.clear()}
                         disabled={emptyAssetQuantity()}
                     >
                         <Text style={[styles.buttonText, { color: emptyAssetQuantity() ? "grey" : "white" }]}>

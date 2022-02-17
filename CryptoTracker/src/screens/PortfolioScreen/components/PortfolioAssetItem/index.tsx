@@ -16,14 +16,7 @@ interface AssetInfo {
 }
 
 const PortfolioAssetItem = ({ assetItem }: Props) => {
-    const {
-        currentPrice,
-        image,
-        name,
-        priceChangePercentage,
-        quantityBought,
-        ticker,
-    } = assetItem;
+    const { currentPrice, image, name, priceChangePercentage, quantityBought, ticker } = assetItem;
 
     const isChangePositive = () => priceChangePercentage >= 0;
 
@@ -31,27 +24,21 @@ const PortfolioAssetItem = ({ assetItem }: Props) => {
 
     return (
         <View style={styles.coinContainer}>
-            <Image
-                source={{ uri: image }}
-                style={{
-                    height: 30,
-                    width: 30,
-                    marginRight: 10,
-                    alignSelf: "center",
-                }}
-            />
+            <Image source={{ uri: image }} style={styles.image} />
             <View>
-                <Text style={styles.title}>{name}</Text>
+                <Text style={styles.title} numberOfLines={1}>
+                    {name}
+                </Text>
                 <Text style={styles.ticker}>{ticker}</Text>
             </View>
             <View style={{ marginLeft: "auto", alignItems: "flex-end" }}>
-                <Text style={styles.title}>{currentPrice}</Text>
+                <Text style={styles.text}>{currentPrice}</Text>
                 <View style={{ flexDirection: "row" }}>
                     <AntDesign
                         name={isChangePositive() ? "caretup" : "caretdown"}
                         size={12}
                         color={isChangePositive() ? "#16c784" : "#ea3943"}
-                        style={{ alignSelf: "center", marginRight: 5 }}
+                        style={styles.icon}
                     />
                     <Text
                         style={{
@@ -64,7 +51,7 @@ const PortfolioAssetItem = ({ assetItem }: Props) => {
                 </View>
             </View>
             <View style={styles.quantityContainer}>
-                <Text style={styles.title}>${renderHoldings()}</Text>
+                <Text style={styles.text}>${renderHoldings()}</Text>
                 <Text style={styles.ticker}>
                     {quantityBought} {ticker}
                 </Text>
@@ -75,6 +62,13 @@ const PortfolioAssetItem = ({ assetItem }: Props) => {
 
 const styles = StyleSheet.create({
     title: {
+        color: "white",
+        fontSize: 16,
+        fontWeight: "bold",
+        alignSelf: "flex-end",
+        width: 100,
+    },
+    text: {
         color: "white",
         fontSize: 16,
         fontWeight: "bold",
@@ -92,6 +86,16 @@ const styles = StyleSheet.create({
     quantityContainer: {
         marginLeft: "auto",
         alignItems: "flex-end",
+    },
+    icon: {
+        alignSelf: "center",
+        marginRight: 5,
+    },
+    image: {
+        height: 30,
+        width: 30,
+        marginRight: 10,
+        alignSelf: "center",
     },
 });
 

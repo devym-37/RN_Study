@@ -6,13 +6,8 @@ interface Props {}
 
 const PortfolioScreen: FC<Props> = () => {
     return (
-        <View>
-            <Text>PortfolioScreen</Text>
-            <Suspense
-                fallback={
-                    <Text style={{ color: "white" }}>Loading Please Wait</Text>
-                }
-            >
+        <View style={{ flex: 1 }}>
+            <Suspense fallback={<Text style={{ color: "white" }}>Loading Please Wait</Text>}>
                 <PortfolioAssetsList />
             </Suspense>
         </View>

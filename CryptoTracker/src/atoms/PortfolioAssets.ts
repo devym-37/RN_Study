@@ -23,8 +23,8 @@ export const allPortfolioBoughtAssetsFromAPI = selector({
             const portfolioAsset = portfolioAssetsMarketData.filter((item: any) => boughtAsset.id === item.id)[0];
             return {
                 ...boughtAsset,
-                currentPrice: portfolioAsset.currentPrice,
-                priceChangePercentage: portfolioAsset.price_change_percentage_24,
+                currentPrice: portfolioAsset.current_price,
+                priceChangePercentage: portfolioAsset.price_change_percentage_24h,
             };
         });
 
