@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ActivityIndicator, FlatList, RefreshControl } from "react-native";
+import { ActivityIndicator, FlatList, RefreshControl, View, Text, StyleSheet } from "react-native";
 import CoinItem, { MarketCoinInfo } from "../../components/CoinItem";
 import cryptocurrencies from "../../../assets/data/cryptocurrencies.json";
 import { getMarketData } from "../../services/requests";
@@ -40,14 +40,28 @@ const HomeScreen = () => {
     }
 
     return (
-        <FlatList
-            data={coins}
-            renderItem={renderItem}
-            keyExtractor={(item, index) => index.toString()}
-            refreshControl={<RefreshControl refreshing={loading} tintColor='white' onRefresh={refetchCoins} />}
-            onEndReached={() => fetchCoins(pageNo.current)}
-        />
+        <View>
+            <Text style={styles.title}>CryptoAssets</Text>
+            <FlatList
+                data={coins}
+                renderItem={renderItem}
+                keyExtractor={(item, index) => index.toString()}
+                refreshControl={<RefreshControl refreshing={loading} tintColor='white' onRefresh={refetchCoins} />}
+                onEndReached={() => fetchCoins(pageNo.current)}
+            />
+        </View>
     );
 };
+
+const styles = StyleSheet.create({
+    title: {
+        color: "white",
+        fontSize: 25,
+        letterSpacing: 1,
+        paddingHorizontal: 20,
+        paddingBottom: 10,
+        fontFamily: "Inter_900Black",
+    },
+});
 
 export default HomeScreen;

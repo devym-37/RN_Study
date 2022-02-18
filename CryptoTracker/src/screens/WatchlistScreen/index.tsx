@@ -15,7 +15,9 @@ const WatchListScreen: FC<Props> = () => {
     const transformCoinIds = () => watchListCoinIds.join("%2C");
 
     useEffect(() => {
-        fetchWatchListedCoins();
+        if (watchListCoinIds.length > 0) {
+            fetchWatchListedCoins();
+        }
     }, [watchListCoinIds]);
 
     const fetchWatchListedCoins = async () => {
@@ -29,22 +31,14 @@ const WatchListScreen: FC<Props> = () => {
         setLoading(false);
     };
 
-    const renderItem = ({ item }: MarketCoinInfo) => (
-        <CoinItem marketCoin={item} />
-    );
+    const renderItem = ({ item }: MarketCoinInfo) => <CoinItem marketCoin={item} />;
 
     return (
         <FlatList
             data={likeCoins}
             renderItem={renderItem}
             keyExtractor={(item, index) => index.toString()}
-            refreshControl={
-                <RefreshControl
-                    refreshing={loading}
-                    tintColor='white'
-                    onRefresh={fetchWatchListedCoins}
-                />
-            }
+            refreshControl={<RefreshControl refreshing={loading} tintColor='white' onRefresh={fetchWatchListedCoins} />}
         />
     );
 };

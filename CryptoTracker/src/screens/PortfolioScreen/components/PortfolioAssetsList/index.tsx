@@ -121,6 +121,8 @@ const styles = StyleSheet.create({
         color: "white",
         fontWeight: "600",
         fontSize: 17,
+        alignSelf: "flex-end",
+        flex: 1,
     },
     balanceContainer: {
         flexDirection: "row",
@@ -134,6 +136,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 3,
         paddingVertical: 8,
         borderRadius: 5,
+        alignItems: "flex-end",
     },
     assetsLabel: {
         color: "white",
