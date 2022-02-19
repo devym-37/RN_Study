@@ -1,14 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { View, Text, StyleSheet, Dimensions, TextInput, ActivityIndicator } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { ChartPathProvider, ChartPath, ChartDot, ChartYLabel } from "@rainbow-me/animated-charts";
 import { useRoute } from "@react-navigation/native";
 import Coin from "../../../assets/data/crypto.json";
 import CoinDetailHeader from "./components/CoinDetailHeader";
+import CoinFilterTab, { Range } from "./components/CoinFilterTab";
 import { getDetailCoinData, getCoinMarketChart } from "../../services/requests";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const DEFAULT_COIN_VALUE = "1";
+const DEFAULT_RANGE = "1";
+const FILTER_DAYS = [
+    { filterDay: "1", filterText: "24h" },
+    { filterDay: "7", filterText: "7d" },
+    { filterDay: "30", filterText: "30d" },
+    { filterDay: "365", filterText: "1y" },
+    { filterDay: "max", filterText: "All" },
+];
 
 const CoinDetailScreen = () => {
     const [coinValue, setCoinValue] = useState<string>(DEFAULT_COIN_VALUE);
@@ -16,6 +25,7 @@ const CoinDetailScreen = () => {
     const [coin, setCoin] = useState(null);
     const [coinMarketChart, setCoinMarketChart] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [selectedRange, setSelectedRange] = useState<Range>(DEFAULT_RANGE);
 
     const route = useRoute();
 
@@ -25,15 +35,25 @@ const CoinDetailScreen = () => {
 
     const fetchCoinData = async () => {
         const fetchedCoinData = await getDetailCoinData(coinId);
-        const fetchedCoinMarketChart = await getCoinMarketChart(coinId);
-        setCoinMarketChart(fetchedCoinMarketChart);
+
         setCoin(fetchedCoinData);
         setUsdValue(fetchedCoinData.market_data.current_price.usd.toString());
         setLoading(false);
     };
 
+    const fetchMarketCoinData = async (selectedRangeValue: Range) => {
+        const fetchedCoinMarketData = await getCoinMarketChart(coinId, selectedRangeValue);
+        setCoinMarketChart(fetchedCoinMarketData);
+    };
+
     useEffect(() => {
         fetchCoinData();
+        fetchMarketCoinData(DEFAULT_RANGE);
+    }, []);
+
+    const handleClickRangeTab = useCallback((filterRange) => {
+        setSelectedRange(filterRange);
+        fetchMarketCoinData(filterRange);
     }, []);
 
     if (loading || !coin || !coinMarketChart) {
@@ -109,6 +129,17 @@ const CoinDetailScreen = () => {
 
                         <Text style={styles.pricePercent}>{price_change_percentage_24h?.toFixed(2)}%</Text>
                     </View>
+                </View>
+                <View style={styles.filterContainer}>
+                    {FILTER_DAYS.map(({ filterDay, filterText }) => (
+                        <CoinFilterTab
+                            key={filterText}
+                            filterDay={filterDay}
+                            filterText={filterText}
+                            selectedRange={selectedRange}
+                            onClickRange={handleClickRangeTab}
+                        />
+                    ))}
                 </View>
                 <View>
                     <ChartPath
@@ -194,6 +225,14 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+    },
+    filterContainer: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+        backgroundColor: "#2B2B2B",
+        paddingVertical: 5,
+        borderRadius: 5,
+        marginVertical: 10,
     },
 });
 

@@ -12,17 +12,16 @@ export const getDetailCoinData = async (coinId: string) => {
     }
 };
 
-export const getCoinMarketChart = async (coinId: string) => {
+export const getCoinMarketChart = async (coinId: string, selectedRange: string) => {
     try {
         const response = await axios.get(
-            `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=1&interval=hourly`
+            `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${selectedRange}&interval=hourly`
         );
         return response.data;
     } catch (e) {
-        console.log("getCoinMarketChart error : ", e);
+        console.log(e);
     }
 };
-
 export const getMarketData = async (pageNumber = 1) => {
     try {
         const response = await axios.get(
@@ -47,9 +46,7 @@ export const getWatchListedCoins = async (pageNumber = 1, coinIds: string) => {
 
 export const getAllCoins = async () => {
     try {
-        const response = await axios.get(
-            `https://api.coingecko.com/api/v3/coins/list?include_platform=false`
-        );
+        const response = await axios.get(`https://api.coingecko.com/api/v3/coins/list?include_platform=false`);
         return response.data;
     } catch (e) {
         console.error(e);
