@@ -2,16 +2,20 @@ import React, { FC } from "react";
 import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import PortfolioAssetItem from "../PortfolioAssetItem";
+import { SwipeListView } from "react-native-swipe-list-view";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { allPortfolioAssets } from "../../../../atoms/PortfolioAssets";
+import { FontAwesome } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import PortfolioAssetItem from "../PortfolioAssetItem";
+import { allPortfolioAssets, allPortfolioBoughtAssetsInStorage } from "../../../../atoms/PortfolioAssets";
 
 interface Props {}
 
 const PortfolioAssetsList: FC<Props> = () => {
     const navigation = useNavigation();
     const assets = useRecoilValue(allPortfolioAssets);
-    console.log("assets", assets);
+    const [storageAssets, setStorageAssets] = useRecoilState(allPortfolioBoughtAssetsInStorage);
+
     const getCurrentBalance = () =>
         assets.reduce((total, currentAsset) => total + currentAsset.currentPrice * currentAsset.quantityBought, 0);
 
@@ -38,6 +42,13 @@ const PortfolioAssetsList: FC<Props> = () => {
     };
 
     const isChangePositive = () => getCurrentValueChange() >= 0;
+
+    const onDeleteAsset = async (asset) => {
+        const newAssets = storageAssets.filter((coin) => coin.unique_id !== asset.item.unique_id);
+        const jsonValue = JSON.stringify(newAssets);
+        await AsyncStorage.setItem("@portfolio_coins", jsonValue);
+        setStorageAssets(newAssets);
+    };
 
     const renderItem = ({ item }) => {
         return <PortfolioAssetItem assetItem={item} />;
@@ -89,11 +100,23 @@ const PortfolioAssetsList: FC<Props> = () => {
         );
     };
 
+    const renderDeleteButton = (data) => {
+        return (
+            <Pressable style={styles.deleteButtonContainer} onPress={() => onDeleteAsset(data)}>
+                <FontAwesome name='trash-o' size={24} color='white' />
+            </Pressable>
+        );
+    };
+
     return (
-        <FlatList
+        <SwipeListView
             data={assets}
-            keyExtractor={(item, index) => index.toString()}
+            keyExtractor={({ id }, index) => `${id}${index}`}
             renderItem={renderItem}
+            rightOpenValue={-75}
+            disableRightSwipe
+            closeOnRowPress
+            renderHiddenItem={(data) => renderDeleteButton(data)}
             ListHeaderComponent={renderListHeader()}
             ListFooterComponent={renderFooter()}
         />
@@ -121,14 +144,13 @@ const styles = StyleSheet.create({
         color: "white",
         fontWeight: "600",
         fontSize: 17,
-        alignSelf: "flex-end",
-        flex: 1,
     },
     balanceContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
         marginTop: 10,
+        marginBottom: 5,
         marginHorizontal: 10,
     },
     priceChangePercentageContainer: {
@@ -136,7 +158,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 3,
         paddingVertical: 8,
         borderRadius: 5,
-        alignItems: "flex-end",
     },
     assetsLabel: {
         color: "white",
@@ -157,6 +178,14 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 15,
         fontWeight: "600",
+    },
+    deleteButtonContainer: {
+        flex: 1,
+        backgroundColor: "#EA3943",
+        alignItems: "flex-end",
+        justifyContent: "center",
+        paddingRight: 30,
+        marginLeft: 20,
     },
 });
 

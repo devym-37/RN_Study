@@ -3,9 +3,10 @@ import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
 import SearchableDropDown from "react-native-searchable-dropdown";
 import { useNavigation } from "@react-navigation/native";
 import { useRecoilState } from "recoil";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import uuid from "react-native-uuid";
 import { allPortfolioBoughtAssetsInStorage } from "../../atoms/PortfolioAssets";
 import { getAllCoins, getDetailCoinData } from "../../services/requests";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Props {}
 
@@ -55,6 +56,7 @@ const AddNewAssetScreen: FC<Props> = () => {
     const onAddNewAsset = async () => {
         const newAsset = {
             id: selectedCoin.id,
+            unique_id: selectedCoin.id + uuid.v4(),
             name: selectedCoin.name,
             image: selectedCoin.image.small,
             ticker: selectedCoin.symbol.toUpperCase(),
@@ -63,7 +65,7 @@ const AddNewAssetScreen: FC<Props> = () => {
         };
         const newAssets = [...assetsInStorage, newAsset];
         const jsonValue = JSON.stringify(newAssets);
-        await AsyncStorage.setItem("@portfolio_coin", jsonValue);
+        await AsyncStorage.setItem("@portfolio_coins", jsonValue);
         setAssetsInStorage(newAssets);
         navigation.goBack();
     };
