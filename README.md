@@ -6,5 +6,5 @@
 
 ---
 
-1. TinderClone 프로젝트
-2. CryptoTracker 프로젝터
+1. TinderClone 프로젝트 - completed
+2. CryptoTracker 프로젝트 - completed
