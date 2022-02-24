@@ -4,25 +4,27 @@ import Animated, { useAnimatedProps } from "react-native-reanimated";
 import { addCurve, addLine, createPath, mix, serialize } from "react-native-redash";
 import Svg, { Path } from "react-native-svg";
 
-interface SquareProps {}
+interface SquareProps {
+    progress: Animated.SharedValue<number>;
+}
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
+
+const V_FACTOR = 2.5;
+const H_FACTOR = 0.3;
 export const SIZE = 150;
+export const MAX_HEIGHT = SIZE * V_FACTOR;
 
-const V_FACTOR = 3;
-const H_FACTOR = 0.4;
-const progress = 1;
-
-const Square = () => {
+const Square = ({ progress }: SquareProps) => {
     const animatedProps = useAnimatedProps(() => {
-        const distortion = {
-            x: mix(progress, 0, SIZE * H_FACTOR),
-            y: mix(progress, 1, V_FACTOR),
+        const factor = {
+            x: mix(progress.value, 0, H_FACTOR),
+            y: mix(progress.value, 1, V_FACTOR),
         };
         const p1 = { x: 0, y: 0 };
         const p2 = { x: SIZE, y: 0 };
-        const p3 = { x: SIZE - distortion.x, y: SIZE * distortion.y };
-        const p4 = { x: distortion.x, y: SIZE * distortion.y };
+        const p3 = { x: SIZE * (1 - factor.x), y: SIZE * factor.y };
+        const p4 = { x: SIZE * factor.x, y: SIZE * factor.y };
         const path = createPath(p1);
         addLine(path, p2);
         addCurve(path, {
@@ -38,7 +40,7 @@ const Square = () => {
         });
         return {
             d: serialize(path),
-            fill: "#3bde",
+            fill: "#45A6E5",
         };
     });
 
