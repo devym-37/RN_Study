@@ -11,6 +11,9 @@ const Main = ({ navigation }) => {
             <Pressable onPress={() => navigation.navigate("StickyShapes")} style={styles.buttonContainer}>
                 <Text style={styles.text}>StickyShapes</Text>
             </Pressable>
+            <Pressable onPress={() => navigation.navigate("Swiper")} style={styles.buttonContainer}>
+                <Text style={styles.text}>Swiper</Text>
+            </Pressable>
         </View>
     );
 };
