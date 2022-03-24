@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Main from "./src/Main";
 import StickyShapes from "./src/StickyShapes";
 import Wave from "./src/Wave";
+import Swiper from "./src/Swiper";
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,13 @@ const AppNavigator = () => (
             options={{
                 title: "Sticky Shapes",
                 header: () => null,
+            }}
+        />
+        <Stack.Screen
+            name='Swiper'
+            component={Swiper}
+            options={{
+                title: "Swiper",
             }}
         />
     </Stack.Navigator>

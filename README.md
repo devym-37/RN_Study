@@ -13,3 +13,5 @@
 #### - 2-2. Sticky Shapes reanimated - completed (William Candillon - React Native Sticky Shapes)
 
 #### - 3-1. Wave reanimated - completed (William Candillon - React Native Wave)
+
+#### - 3-2. Swiper - completed (William Candillon - React Native Swiper)
