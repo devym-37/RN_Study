@@ -15,3 +15,5 @@
 #### - 3-1. Wave reanimated - completed (William Candillon - React Native Wave)
 
 #### - 3-2. Swiper - completed (William Candillon - React Native Swiper)
+
+#### - 4-1. Finch - completed (William Candillon - React Native Finch)
