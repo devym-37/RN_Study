@@ -1,8 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 
-const Main = ({ navigation }) => {
-    console.log("navigation", navigation);
+const Main = ({ navigation }: any) => {
     return (
         <View style={styles.container}>
             <Pressable onPress={() => navigation.navigate("Wave")} style={styles.buttonContainer}>
@@ -13,6 +12,9 @@ const Main = ({ navigation }) => {
             </Pressable>
             <Pressable onPress={() => navigation.navigate("Swiper")} style={styles.buttonContainer}>
                 <Text style={styles.text}>Swiper</Text>
+            </Pressable>
+            <Pressable onPress={() => navigation.navigate("Pinch")} style={styles.buttonContainer}>
+                <Text style={styles.text}>Pinch</Text>
             </Pressable>
         </View>
     );
