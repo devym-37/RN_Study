@@ -5,6 +5,7 @@ import StickyShapes from "./src/StickyShapes";
 import Wave from "./src/Wave";
 import Swiper from "./src/Swiper";
 import Pinch from "./src/Pinch";
+import Worklets from "./src/Worklets";
 
 const Stack = createStackNavigator();
 
@@ -45,6 +46,13 @@ const AppNavigator = () => (
             component={Pinch}
             options={{
                 title: "Pinch",
+            }}
+        />
+        <Stack.Screen
+            name='Worklets'
+            component={Worklets}
+            options={{
+                title: "Worklets",
             }}
         />
     </Stack.Navigator>
