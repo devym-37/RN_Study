@@ -17,3 +17,5 @@
 #### - 3-2. Swiper - completed (William Candillon - React Native Swiper)
 
 #### - 4-1. Finch - completed (William Candillon - React Native Finch)
+
+#### - 4-2. Worklets, Transitions - completed (William Candillon - React Native Worklets, Transitions)
