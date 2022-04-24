@@ -6,6 +6,7 @@ import Wave from "./src/Wave";
 import Swiper from "./src/Swiper";
 import Pinch from "./src/Pinch";
 import Worklets from "./src/Worklets";
+import Transitions from "./src/Transitions";
 
 const Stack = createStackNavigator();
 
@@ -53,6 +54,13 @@ const AppNavigator = () => (
             component={Worklets}
             options={{
                 title: "Worklets",
+            }}
+        />
+        <Stack.Screen
+            name='Transitions'
+            component={Transitions}
+            options={{
+                title: "Transitions",
             }}
         />
     </Stack.Navigator>

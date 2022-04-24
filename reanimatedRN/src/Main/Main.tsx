@@ -19,6 +19,9 @@ const Main = ({ navigation }: any) => {
             <Pressable onPress={() => navigation.navigate("Worklets")} style={styles.buttonContainer}>
                 <Text style={styles.text}>Worklets</Text>
             </Pressable>
+            <Pressable onPress={() => navigation.navigate("Transitions")} style={styles.buttonContainer}>
+                <Text style={styles.text}>Transitions</Text>
+            </Pressable>
         </View>
     );
 };
