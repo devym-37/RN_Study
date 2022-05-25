@@ -7,6 +7,7 @@ import Swiper from "./src/Swiper";
 import Pinch from "./src/Pinch";
 import Worklets from "./src/Worklets";
 import Transitions from "./src/Transitions";
+import FlatList from "./src/FlatList";
 
 const Stack = createStackNavigator();
 
@@ -61,6 +62,14 @@ const AppNavigator = () => (
             component={Transitions}
             options={{
                 title: "Transitions",
+            }}
+        />
+
+        <Stack.Screen
+            name='FlatList'
+            component={FlatList}
+            options={{
+                title: "FlatList",
             }}
         />
     </Stack.Navigator>

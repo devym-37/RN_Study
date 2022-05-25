@@ -22,6 +22,9 @@ const Main = ({ navigation }: any) => {
             <Pressable onPress={() => navigation.navigate("Transitions")} style={styles.buttonContainer}>
                 <Text style={styles.text}>Transitions</Text>
             </Pressable>
+            <Pressable onPress={() => navigation.navigate("FlatList")} style={styles.buttonContainer}>
+                <Text style={styles.text}>FlatList</Text>
+            </Pressable>
         </View>
     );
 };
