@@ -19,3 +19,5 @@
 #### - 4-1. Finch - completed (William Candillon - React Native Finch)
 
 #### - 4-2. Worklets, Transitions - completed (William Candillon - React Native Worklets, Transitions)
+
+#### - 5-1. FlatList animation - completed (Catalin Miron - React Native Scroll Item)
