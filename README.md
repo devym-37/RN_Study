@@ -21,3 +21,5 @@
 #### - 4-2. Worklets, Transitions - completed (William Candillon - React Native Worklets, Transitions)
 
 #### - 5-1. FlatList animation - completed (Catalin Miron - React Native Scroll Item)
+
+#### - 5-2. StickyFooter animation - completed (Catalin Miron - React Native StickyFooter)
