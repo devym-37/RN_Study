@@ -8,6 +8,7 @@ import Pinch from "./src/Pinch";
 import Worklets from "./src/Worklets";
 import Transitions from "./src/Transitions";
 import FlatList from "./src/FlatList";
+import StickyFooter from "./src/StickyFooter";
 
 const Stack = createStackNavigator();
 
@@ -70,6 +71,15 @@ const AppNavigator = () => (
             component={FlatList}
             options={{
                 title: "FlatList",
+            }}
+        />
+
+        <Stack.Screen
+            name='StickyFooter'
+            component={StickyFooter}
+            options={{
+                title: "StickyFooter",
+                header: () => null,
             }}
         />
     </Stack.Navigator>

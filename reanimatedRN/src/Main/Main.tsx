@@ -1,31 +1,36 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 
 const Main = ({ navigation }: any) => {
     return (
-        <View style={styles.container}>
-            <Pressable onPress={() => navigation.navigate("Wave")} style={styles.buttonContainer}>
-                <Text style={styles.text}>Waves</Text>
-            </Pressable>
-            <Pressable onPress={() => navigation.navigate("StickyShapes")} style={styles.buttonContainer}>
-                <Text style={styles.text}>StickyShapes</Text>
-            </Pressable>
-            <Pressable onPress={() => navigation.navigate("Swiper")} style={styles.buttonContainer}>
-                <Text style={styles.text}>Swiper</Text>
-            </Pressable>
-            <Pressable onPress={() => navigation.navigate("Pinch")} style={styles.buttonContainer}>
-                <Text style={styles.text}>Pinch</Text>
-            </Pressable>
-            <Pressable onPress={() => navigation.navigate("Worklets")} style={styles.buttonContainer}>
-                <Text style={styles.text}>Worklets</Text>
-            </Pressable>
-            <Pressable onPress={() => navigation.navigate("Transitions")} style={styles.buttonContainer}>
-                <Text style={styles.text}>Transitions</Text>
-            </Pressable>
-            <Pressable onPress={() => navigation.navigate("FlatList")} style={styles.buttonContainer}>
-                <Text style={styles.text}>FlatList</Text>
-            </Pressable>
-        </View>
+        <ScrollView>
+            <View style={styles.container}>
+                <Pressable onPress={() => navigation.navigate("Wave")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>Waves</Text>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate("StickyShapes")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>StickyShapes</Text>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate("Swiper")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>Swiper</Text>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate("Pinch")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>Pinch</Text>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate("Worklets")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>Worklets</Text>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate("Transitions")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>Transitions</Text>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate("FlatList")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>FlatList</Text>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate("StickyFooter")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>StickyFooter</Text>
+                </Pressable>
+            </View>
+        </ScrollView>
     );
 };
 
