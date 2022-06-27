@@ -29,6 +29,9 @@ const Main = ({ navigation }: any) => {
                 <Pressable onPress={() => navigation.navigate("StickyFooter")} style={styles.buttonContainer}>
                     <Text style={styles.text}>StickyFooter</Text>
                 </Pressable>
+                <Pressable onPress={() => navigation.navigate("ProgressBar")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>ProgressBar</Text>
+                </Pressable>
             </View>
         </ScrollView>
     );

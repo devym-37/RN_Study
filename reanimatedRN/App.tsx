@@ -9,6 +9,7 @@ import Worklets from "./src/Worklets";
 import Transitions from "./src/Transitions";
 import FlatList from "./src/FlatList";
 import StickyFooter from "./src/StickyFooter";
+import ProgressBar from "./src/ProgressBar";
 
 const Stack = createStackNavigator();
 
@@ -79,6 +80,14 @@ const AppNavigator = () => (
             component={StickyFooter}
             options={{
                 title: "StickyFooter",
+                header: () => null,
+            }}
+        />
+        <Stack.Screen
+            name='ProgressBar'
+            component={ProgressBar}
+            options={{
+                title: "ProgressBar",
                 header: () => null,
             }}
         />
