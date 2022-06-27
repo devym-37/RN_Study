@@ -23,3 +23,5 @@
 #### - 5-1. FlatList animation - completed (Catalin Miron - React Native Scroll Item)
 
 #### - 5-2. StickyFooter animation - completed (Catalin Miron - React Native StickyFooter)
+
+#### - 6-1. ProgressBar - completed (William Candillon - React Native ProgressBar)
