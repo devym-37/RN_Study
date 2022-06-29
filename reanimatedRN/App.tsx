@@ -10,6 +10,7 @@ import Transitions from "./src/Transitions";
 import FlatList from "./src/FlatList";
 import StickyFooter from "./src/StickyFooter";
 import ProgressBar from "./src/ProgressBar";
+import MaskedView from "./src/MaskedView";
 
 const Stack = createStackNavigator();
 
@@ -88,6 +89,14 @@ const AppNavigator = () => (
             component={ProgressBar}
             options={{
                 title: "ProgressBar",
+                header: () => null,
+            }}
+        />
+        <Stack.Screen
+            name='MaskedView'
+            component={MaskedView}
+            options={{
+                title: "MaskedView",
                 header: () => null,
             }}
         />

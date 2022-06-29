@@ -32,6 +32,9 @@ const Main = ({ navigation }: any) => {
                 <Pressable onPress={() => navigation.navigate("ProgressBar")} style={styles.buttonContainer}>
                     <Text style={styles.text}>ProgressBar</Text>
                 </Pressable>
+                <Pressable onPress={() => navigation.navigate("Masked View")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>Masked View</Text>
+                </Pressable>
             </View>
         </ScrollView>
     );
