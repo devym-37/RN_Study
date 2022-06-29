@@ -25,3 +25,5 @@
 #### - 5-2. StickyFooter animation - completed (Catalin Miron - React Native StickyFooter)
 
 #### - 6-1. ProgressBar - completed (William Candillon - React Native ProgressBar)
+
+#### - 6-2. MaskedView - completed (William Candillon - React Native MaskedView)
