@@ -29,3 +29,5 @@
 #### - 6-2. MaskedView - completed (William Candillon - React Native MaskedView)
 
 #### - 7-1. Measures - completed (William Candillon - React Native Measures)
+
+#### - 7-2. LoopingAnimation - completed (William Candillon - React Native Animation Loop)
