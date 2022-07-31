@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StyleSheet, Text, View } from "react-native";
 import Accordion from "./src/Accordion";
+import LoopingAnimation from "./src/LoopingAnimation";
 
 const Stack = createStackNavigator();
 
@@ -13,6 +14,13 @@ const AppNavigator = () => (
             component={Accordion}
             options={{
                 title: "Accordion",
+            }}
+        />
+        <Stack.Screen
+            name='LoopingAnimation'
+            component={LoopingAnimation}
+            options={{
+                title: "LoopingAnimation",
             }}
         />
     </Stack.Navigator>
