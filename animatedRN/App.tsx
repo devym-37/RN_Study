@@ -4,11 +4,20 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { StyleSheet, Text, View } from "react-native";
 import Accordion from "./src/Accordion";
 import LoopingAnimation from "./src/LoopingAnimation";
+import Main from "./src/Main";
+import AdvancedFlatList from "./src/AdvancedFlatList";
 
 const Stack = createStackNavigator();
 
 const AppNavigator = () => (
     <Stack.Navigator>
+        <Stack.Screen
+            name='Main'
+            component={Main}
+            options={{
+                title: "Main",
+            }}
+        />
         <Stack.Screen
             name='Accordion'
             component={Accordion}
@@ -21,6 +30,13 @@ const AppNavigator = () => (
             component={LoopingAnimation}
             options={{
                 title: "LoopingAnimation",
+            }}
+        />
+        <Stack.Screen
+            name='AdvancedFlatList'
+            component={AdvancedFlatList}
+            options={{
+                title: "AdvancedFlatList",
             }}
         />
     </Stack.Navigator>
