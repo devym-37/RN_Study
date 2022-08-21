@@ -31,3 +31,5 @@
 #### - 7-1. Measures - completed (William Candillon - React Native Measures)
 
 #### - 7-2. LoopingAnimation - completed (William Candillon - React Native Animation Loop)
+
+#### - 8-1. AdvancedFlatList - completed (Catalin Miron - https://www.youtube.com/watch?v=fSuYM86JXFo)
