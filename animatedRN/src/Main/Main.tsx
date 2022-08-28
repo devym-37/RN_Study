@@ -14,6 +14,12 @@ const Main = ({ navigation }: any) => {
                 <Pressable onPress={() => navigation.navigate("AdvancedFlatList")} style={styles.buttonContainer}>
                     <Text style={styles.text}>AdvancedFlatList</Text>
                 </Pressable>
+                <Pressable
+                    onPress={() => navigation.navigate("AdvancedCarouselFlatList")}
+                    style={styles.buttonContainer}
+                >
+                    <Text style={styles.text}>AdvancedCarouselFlatList</Text>
+                </Pressable>
             </View>
         </ScrollView>
     );

@@ -6,6 +6,9 @@ import Accordion from "./src/Accordion";
 import LoopingAnimation from "./src/LoopingAnimation";
 import Main from "./src/Main";
 import AdvancedFlatList from "./src/AdvancedFlatList";
+import AdvancedCarouselFlatList from "./src/AdvancedCarouselFlatList";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const Stack = createStackNavigator();
 
@@ -39,14 +42,25 @@ const AppNavigator = () => (
                 title: "AdvancedFlatList",
             }}
         />
+        <Stack.Screen
+            name='AdvancedCarouselFlatList'
+            component={AdvancedCarouselFlatList}
+            options={{
+                headerShown: false,
+            }}
+        />
     </Stack.Navigator>
 );
 
 export default function App() {
     return (
-        <NavigationContainer>
-            <AppNavigator />
-        </NavigationContainer>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <BottomSheetModalProvider>
+                <NavigationContainer>
+                    <AppNavigator />
+                </NavigationContainer>
+            </BottomSheetModalProvider>
+        </GestureHandlerRootView>
     );
 }
 
