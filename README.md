@@ -33,3 +33,5 @@
 #### - 7-2. LoopingAnimation - completed (William Candillon - React Native Animation Loop)
 
 #### - 8-1. AdvancedFlatList - completed (Catalin Miron - https://www.youtube.com/watch?v=fSuYM86JXFo)
+
+#### - 8-2. AdvancedCarouselFlatList - completed (Catalin Miron - https://www.youtube.com/watch?v=FIAPuq24b0g)
