@@ -11,6 +11,7 @@ import FlatList from "./src/FlatList";
 import StickyFooter from "./src/StickyFooter";
 import ProgressBar from "./src/ProgressBar";
 import MaskedView from "./src/MaskedView";
+import WaveView from "./src/WaveView";
 
 const Stack = createStackNavigator();
 
@@ -97,6 +98,15 @@ const AppNavigator = () => (
             component={MaskedView}
             options={{
                 title: "MaskedView",
+                header: () => null,
+            }}
+        />
+
+        <Stack.Screen
+            name='WaveView'
+            component={WaveView}
+            options={{
+                title: "WaveView",
                 header: () => null,
             }}
         />
