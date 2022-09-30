@@ -37,3 +37,5 @@
 #### - 8-2. AdvancedCarouselFlatList - completed (Catalin Miron - https://www.youtube.com/watch?v=FIAPuq24b0g)
 
 #### - 9-1. Wave - completed (https://www.youtube.com/watch?v=f5QYDfHa-KA)
+
+#### - 9-2. ScrollView Header Animation - completed (https://www.youtube.com/watch?v=WIX9Tp76Tug)
