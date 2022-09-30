@@ -12,6 +12,7 @@ import StickyFooter from "./src/StickyFooter";
 import ProgressBar from "./src/ProgressBar";
 import MaskedView from "./src/MaskedView";
 import WaveView from "./src/WaveView";
+import MomoHeader from "./src/MomoHeader";
 
 const Stack = createStackNavigator();
 
@@ -107,6 +108,15 @@ const AppNavigator = () => (
             component={WaveView}
             options={{
                 title: "WaveView",
+                header: () => null,
+            }}
+        />
+
+        <Stack.Screen
+            name='MomoHeader'
+            component={MomoHeader}
+            options={{
+                title: "MomoHeader",
                 header: () => null,
             }}
         />

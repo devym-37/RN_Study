@@ -35,6 +35,12 @@ const Main = ({ navigation }: any) => {
                 <Pressable onPress={() => navigation.navigate("Masked View")} style={styles.buttonContainer}>
                     <Text style={styles.text}>Masked View</Text>
                 </Pressable>
+                <Pressable onPress={() => navigation.navigate("WaveView")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>Wave View</Text>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate("MomoHeader")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>MomoHeader</Text>
+                </Pressable>
             </View>
         </ScrollView>
     );
