@@ -59,11 +59,12 @@ const Item = ({ y, index, item: { title, subtitle, picture, top } }: ItemProps) 
     const style = useAnimatedStyle(() => {
         return {
             height: interpolate(
-                y.value,
+                -y.value,
                 [(index - 1) * MAX_HEIGHT, index * MAX_HEIGHT],
                 [MIN_HEIGHT, MAX_HEIGHT],
                 Extrapolate.CLAMP
             ),
+            top: y.value,
         };
     });
     const titleStyle = useAnimatedStyle(() => {

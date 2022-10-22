@@ -41,6 +41,9 @@ const Main = ({ navigation }: any) => {
                 <Pressable onPress={() => navigation.navigate("MomoHeader")} style={styles.buttonContainer}>
                     <Text style={styles.text}>MomoHeader</Text>
                 </Pressable>
+                <Pressable onPress={() => navigation.navigate("Chanel")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>Chanel</Text>
+                </Pressable>
             </View>
         </ScrollView>
     );

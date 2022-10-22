@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Main from "./src/Main";
 import StickyShapes from "./src/StickyShapes";
 import Wave from "./src/Wave";
-import Swiper from "./src/Swiper";
+// import Swiper from "./src/Swiper";
 import Pinch from "./src/Pinch";
 import Worklets from "./src/Worklets";
 import Transitions from "./src/Transitions";
@@ -42,13 +42,13 @@ const AppNavigator = () => (
                 header: () => null,
             }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
             name='Swiper'
             component={Swiper}
             options={{
                 title: "Swiper",
             }}
-        />
+        /> */}
         <Stack.Screen
             name='Pinch'
             component={Pinch}
