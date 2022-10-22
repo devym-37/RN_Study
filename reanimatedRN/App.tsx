@@ -13,6 +13,7 @@ import ProgressBar from "./src/ProgressBar";
 import MaskedView from "./src/MaskedView";
 import WaveView from "./src/WaveView";
 import MomoHeader from "./src/MomoHeader";
+import Chanel from "./src/ChanelScroll";
 
 const Stack = createStackNavigator();
 
@@ -117,6 +118,14 @@ const AppNavigator = () => (
             component={MomoHeader}
             options={{
                 title: "MomoHeader",
+                header: () => null,
+            }}
+        />
+        <Stack.Screen
+            name='Chanel'
+            component={Chanel}
+            options={{
+                title: "Chanel",
                 header: () => null,
             }}
         />
