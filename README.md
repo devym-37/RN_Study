@@ -43,3 +43,5 @@
 #### - 10-1. Chanel Scroll - completed (William Candillon - https://www.youtube.com/watch?v=ucpoqa2-74s)
 
 #### - 10-2. Chanel Scroll Convert Gesture - completed (William Candillon - https://www.youtube.com/watch?v=ucpoqa2-74s)
+
+#### - 10-1. Headspace Player - completed (William Candillon - https://www.youtube.com/watch?v=pErnuAx5GjE)
