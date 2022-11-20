@@ -14,8 +14,12 @@ import MaskedView from "./src/MaskedView";
 import WaveView from "./src/WaveView";
 import MomoHeader from "./src/MomoHeader";
 import Chanel from "./src/ChanelScroll";
+import { Headspace } from "./src/Headspace";
+import { LoadAssets } from "./src/LoadAssets";
 
 const Stack = createStackNavigator();
+const fonts = {};
+const assets: number[] = [];
 
 const AppNavigator = () => (
     <Stack.Navigator>
@@ -129,13 +133,21 @@ const AppNavigator = () => (
                 header: () => null,
             }}
         />
+        <Stack.Screen
+            name='Headspace'
+            component={Headspace}
+            options={{
+                title: "Headspace",
+                headerShown: false,
+            }}
+        />
     </Stack.Navigator>
 );
 
 export default function App() {
     return (
-        <NavigationContainer>
+        <LoadAssets assets={assets} fonts={fonts}>
             <AppNavigator />
-        </NavigationContainer>
+        </LoadAssets>
     );
 }
