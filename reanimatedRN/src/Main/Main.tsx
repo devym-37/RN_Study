@@ -44,6 +44,12 @@ const Main = ({ navigation }: any) => {
                 <Pressable onPress={() => navigation.navigate("Chanel")} style={styles.buttonContainer}>
                     <Text style={styles.text}>Chanel</Text>
                 </Pressable>
+                <Pressable onPress={() => navigation.navigate("Headspace")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>Headspace</Text>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate("PathGradient")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>PathGradient</Text>
+                </Pressable>
             </View>
         </ScrollView>
     );

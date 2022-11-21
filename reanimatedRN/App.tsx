@@ -16,6 +16,7 @@ import MomoHeader from "./src/MomoHeader";
 import Chanel from "./src/ChanelScroll";
 import { Headspace } from "./src/Headspace";
 import { LoadAssets } from "./src/LoadAssets";
+import { PathGradient } from "./src/PathGradient";
 
 const Stack = createStackNavigator();
 const fonts = {};
@@ -138,6 +139,14 @@ const AppNavigator = () => (
             component={Headspace}
             options={{
                 title: "Headspace",
+                headerShown: false,
+            }}
+        />
+        <Stack.Screen
+            name='PathGradient'
+            component={PathGradient}
+            options={{
+                title: "PathGradient",
                 headerShown: false,
             }}
         />
