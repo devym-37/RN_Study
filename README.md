@@ -44,8 +44,8 @@
 
 #### - 10-2. Chanel Scroll Convert Gesture - completed (William Candillon - https://www.youtube.com/watch?v=ucpoqa2-74s)
 
-#### - 11-1. Headspace Player - completed (William Candillon -
-
-https://www.youtube.com/watch?v=pErnuAx5GjE)
+#### - 11-1. Headspace Player - completed (William Candillon - https://www.youtube.com/watch?v=pErnuAx5GjE)
 
 #### - 11-2. PathGradient - completed (William Candillon - https://www.youtube.com/watch?v=7SCzL-XnfUU)
+
+#### - 12-1. Spread Cards - completed (http://youtube.com/watch?v=lK6rAktDQJQ&feature=youtu.be)
