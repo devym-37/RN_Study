@@ -50,6 +50,9 @@ const Main = ({ navigation }: any) => {
                 <Pressable onPress={() => navigation.navigate("PathGradient")} style={styles.buttonContainer}>
                     <Text style={styles.text}>PathGradient</Text>
                 </Pressable>
+                <Pressable onPress={() => navigation.navigate("SpreadCards")} style={styles.buttonContainer}>
+                    <Text style={styles.text}>SpreadCards</Text>
+                </Pressable>
             </View>
         </ScrollView>
     );

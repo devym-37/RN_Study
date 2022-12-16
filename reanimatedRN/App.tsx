@@ -17,6 +17,7 @@ import Chanel from "./src/ChanelScroll";
 import { Headspace } from "./src/Headspace";
 import { LoadAssets } from "./src/LoadAssets";
 import { PathGradient } from "./src/PathGradient";
+import SpreadCards from "./src/SpreadCards";
 
 const Stack = createStackNavigator();
 const fonts = {};
@@ -147,6 +148,14 @@ const AppNavigator = () => (
             component={PathGradient}
             options={{
                 title: "PathGradient",
+                headerShown: false,
+            }}
+        />
+        <Stack.Screen
+            name='SpreadCards'
+            component={SpreadCards}
+            options={{
+                title: "SpreadCards",
                 headerShown: false,
             }}
         />
