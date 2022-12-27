@@ -18,6 +18,7 @@ import { Headspace } from "./src/Headspace";
 import { LoadAssets } from "./src/LoadAssets";
 import { PathGradient } from "./src/PathGradient";
 import SpreadCards from "./src/SpreadCards";
+import Toolbar from "./src/Toolbar";
 
 const Stack = createStackNavigator();
 const fonts = {};
@@ -156,6 +157,14 @@ const AppNavigator = () => (
             component={SpreadCards}
             options={{
                 title: "SpreadCards",
+                headerShown: false,
+            }}
+        />
+        <Stack.Screen
+            name='Toolbar'
+            component={Toolbar}
+            options={{
+                title: "Toolbar",
                 headerShown: false,
             }}
         />
