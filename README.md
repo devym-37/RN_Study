@@ -49,3 +49,5 @@
 #### - 11-2. PathGradient - completed (William Candillon - https://www.youtube.com/watch?v=7SCzL-XnfUU)
 
 #### - 12-1. Spread Cards - completed (http://youtube.com/watch?v=lK6rAktDQJQ&feature=youtu.be)
+
+#### - 12-2. Animation Toolbar - completed (https://www.youtube.com/watch?v=27pTWrcEDC4)
