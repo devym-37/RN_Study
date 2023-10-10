@@ -10,6 +10,7 @@ import { SafeAreaView } from 'react-native';
 import { useContextBridge, FiberProvider } from 'its-fine';
 import { Canvas, Circle, Group } from '@shopify/react-native-skia';
 import CanvasPractice from './src/components/Canvas';
+import { Painting, PaintingInheritance } from './src/components/Painting';
 import { ThemeProvider } from './src/components/Canvas/Theme/Theme';
 
 function App(): JSX.Element {
@@ -28,6 +29,8 @@ function App(): JSX.Element {
         </Group>
       </Canvas> */}
         <CanvasPractice />
+        <Painting />
+        <PaintingInheritance />
         {/* </SafeAreaView> */}
       </ThemeProvider>
     </FiberProvider>
